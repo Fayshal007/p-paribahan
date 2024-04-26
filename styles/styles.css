@@ -9,7 +9,16 @@
     font-family: "Inter", sans-serif;
 }
 
-.primary-text-color{
+.primary-text-color {
     color: #1DD100;
-    
+
+}
+
+.primary-button {
+    border-radius: 12px;
+    background: #1DD100;
+    color: #030712;
+    font-family: Raleway;
+    font-weight: 700;
+    border: none;
 }
