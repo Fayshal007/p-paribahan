@@ -23,14 +23,13 @@
     border: none;
 }
 
-.seat{
-    text-align: center;
-    padding: 10px;
-    background-color: #F7F8F8;
-    border-radius: 12px;
+.btn {
+    width: 110px;
+    height: 56px;
 
 }
-.seat-table{
+
+.seat-table {
     border-collapse: separate;
     border-spacing: 10px;
 }
