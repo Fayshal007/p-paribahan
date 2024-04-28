@@ -96,7 +96,7 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
 document.getElementById('coupon-input-field').addEventListener('keyup', function (e) {
     const inputedText = e.target.value;
     const couponBtn = document.getElementById('coupon-btn');
-    if (inputedText.toLowerCase() === "new15") {
+    if (inputedText.toLowerCase() === "new15" && document.querySelectorAll('.seat-table tbody tr td button.selected').length === 4) {
         couponBtn.removeAttribute('disabled');
 
 
@@ -121,7 +121,7 @@ document.getElementById('coupon-input-field').addEventListener('keyup', function
 
 
 
-    } else if (inputedText.toLowerCase() === 'couple20') {
+    } else if (inputedText.toLowerCase() === 'couple20' && document.querySelectorAll('.seat-table tbody tr td button.selected').length === 4) {
         couponBtn.removeAttribute('disabled');
         document.getElementById('coupon-btn').addEventListener('click', function () {
             let grandtotalvalue = parseInt(grandtotalElement.innerText);
