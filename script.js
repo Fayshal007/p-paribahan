@@ -3,6 +3,7 @@ const selectedSeatList = document.getElementById('selected-seat-list');
 const totalpriceElement = document.getElementById('total-price');
 const grandtotalElement = document.getElementById('grand-total');
 const couponRowElement = document.getElementById('coupon-row')
+const phoneNumber = document.getElementById('phone-number')
 
 
 
@@ -28,6 +29,8 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
             event.target.style.color = '';
             // Increase the total seat count by 1
             increaseTotalSeatCount();
+            
+            
         } else {
             // Check if the maximum number of seats has been reached
             if (document.querySelectorAll('.seat-table tbody tr td button.selected').length < 4) {
@@ -53,6 +56,17 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
                 grandtotalvalue += 550;
                 totalpriceElement.innerText = totalpriceValue;
                 grandtotalElement.innerText = grandtotalvalue;
+
+                phoneNumber.addEventListener('keyup',function(e){
+                    const inputNumber = e.target.value;
+                    const inputNumberString = inputNumber.toString();
+                    const nextBtn = document.getElementById('next-btn')
+                    console.log(inputNumberString);
+                    if (event.target.classList.contains('selected') && inputNumberString.length === 11) {
+                        nextBtn.removeAttribute('disabled')
+                        console.log('helo');
+                    }
+                })
 
 
 
