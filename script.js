@@ -1,3 +1,5 @@
+const selectedSeatCountElement = document.getElementById('selected-seat-count');
+
 document.querySelectorAll('.seat-table tbody tr td button').forEach(function(button) {
     button.addEventListener('click', function(event) {
         // Check if the seat is already selected
@@ -19,14 +21,20 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function(but
                 event.target.style.color = 'white';
                 // Decrease the total seat count by 1
                 decreaseTotalSeatCount();
+                let selectedSeatCount =  parseInt(selectedSeatCountElement.innerText);
+                selectedSeatCount += 1;
+                selectedSeatCountElement.innerText = selectedSeatCount;
             } else {
+                // If the maximum number of seats has been reached, alert the user
                 alert('You can only select up to 4 seats.');
             }
         }
 
-        // Get the text seat number
+        // Get the text of the parent <td> element (seat number)
         var seatNumber = event.target.parentElement.textContent.trim();
+        // Log the seat number
         console.log(seatNumber);
+        // Or do whatever you want with the seat number
     });
 });
 
@@ -40,9 +48,6 @@ function decreaseTotalSeatCount() {
 function increaseTotalSeatCount() {
     let totalSeatLeftElement = document.getElementById('total-seat-left');
     let totalSeatLeftValue = parseInt(totalSeatLeftElement.innerText);
-    let selectedSeatCount = document.getElementById('selected-seat-count');
     totalSeatLeftValue += 1;
     totalSeatLeftElement.innerText = totalSeatLeftValue;
-    selectedSeatCount.innerText = totalSeatLeftValue;
-    console.log(totalSeatLeftValue);
 }
