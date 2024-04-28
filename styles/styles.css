@@ -30,6 +30,10 @@
         height: 56px;
     
     }
+    #coupon-btn{
+        width: 55px;
+        height: 30px;
+    }
     
     .seat-table {
         border-collapse: separate;

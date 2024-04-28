@@ -45,40 +45,14 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
                 selectedSeatCountElement.innerText = selectedSeatCount;
                 const firstROw = selectedSeatList.firstChild;
                 selectedSeatList.insertBefore(newSeattr, firstROw);
-                
+
                 //inset total price and grand total
-                 let totalpriceValue = parseInt(totalpriceElement.innerText);
-                 let grandtotalvalue = parseInt(grandtotalElement.innerText);
-                 totalpriceValue += 550;
-                 grandtotalvalue += 550;
-                 totalpriceElement.innerText = totalpriceValue;
-                 grandtotalElement.innerText = grandtotalvalue;
-
-                 //coupon applying
-                 document.getElementById('coupon-input-field').addEventListener('keyup', function(e){
-                    const inputedText = e.target.value;
-                    const couponBtn = document.getElementById('coupon-btn');
-                    if (inputedText.toLowerCase() === "new15" || inputedText.toLowerCase() === 'couple20') {
-                        couponBtn.removeAttribute('disabled');
-                    }else{
-                        couponBtn.setAttribute('disabled', true)
-                    }
-                    couponBtn.addEventListener('click', function(){
-
-                        if (inputedText.toLowerCase() === "new15") {
-                            grandtotalvalue = (grandtotalvalue - (grandtotalvalue*0.15));
-                            grandtotalElement.innerText = grandtotalvalue;
-                            couponRowElement.classList.add('hidden');
-                        } else if(inputedText.toLowerCase() === 'couple20'){
-                            grandtotalvalue = (grandtotalvalue - (grandtotalvalue*0.2));
-                            grandtotalElement.innerText = grandtotalvalue;
-                            couponRowElement.classList.add('hidden');
-                        }
-                    })
-
-                 })
-                 
-
+                let totalpriceValue = parseInt(totalpriceElement.innerText);
+                let grandtotalvalue = parseInt(grandtotalElement.innerText);
+                totalpriceValue += 550;
+                grandtotalvalue += 550;
+                totalpriceElement.innerText = totalpriceValue;
+                grandtotalElement.innerText = grandtotalvalue;
 
 
 
@@ -91,6 +65,64 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
 
     });
 });
+
+//coupon applying
+document.getElementById('coupon-input-field').addEventListener('keyup', function (e) {
+    const inputedText = e.target.value;
+    const couponBtn = document.getElementById('coupon-btn');
+    if (inputedText.toLowerCase() === "new15") {
+        couponBtn.removeAttribute('disabled');
+
+
+        //coupon discount
+        document.getElementById('coupon-btn').addEventListener('click', function () {
+            let grandtotalvalue = parseInt(grandtotalElement.innerText);
+            let discount = grandtotalvalue * 0.15
+            grandtotalvalue = (grandtotalvalue - (discount));
+            grandtotalElement.innerText = grandtotalvalue;
+
+            couponRowElement.classList.add('hidden');
+
+            // Given discount show
+            const newSeattr = document.createElement('tr');
+            newSeattr.innerHTML = `
+                                        <td colspan="2">Discount</td>
+                                        <td> - BDT ${discount}</td>
+            `;
+            const lastRow = selectedSeatList.lastElementChild;
+            selectedSeatList.insertBefore(newSeattr, lastRow);
+        })
+
+
+
+    } else if (inputedText.toLowerCase() === 'couple20') {
+        couponBtn.removeAttribute('disabled');
+        document.getElementById('coupon-btn').addEventListener('click', function () {
+            let grandtotalvalue = parseInt(grandtotalElement.innerText);
+            let discount = grandtotalvalue * 0.20
+            grandtotalvalue = (grandtotalvalue - (discount));
+            grandtotalElement.innerText = grandtotalvalue;
+
+            couponRowElement.classList.add('hidden');
+
+            // Given discount show
+            const newSeattr = document.createElement('tr');
+            newSeattr.innerHTML = `
+                                        <td colspan="2">Discount</td>
+                                        <td> - BDT ${discount}</td>
+            `;
+            const lastRow = selectedSeatList.lastElementChild;
+            selectedSeatList.insertBefore(newSeattr, lastRow);
+        })
+    } else {
+        couponBtn.setAttribute('disabled', true)
+    }
+
+
+
+
+
+})
 
 function decreaseTotalSeatCount() {
     let totalSeatLeftElement = document.getElementById('total-seat-left');
