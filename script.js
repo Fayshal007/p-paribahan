@@ -64,7 +64,8 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
                     console.log(inputNumberString);
                     if (event.target.classList.contains('selected') && inputNumberString.length === 11) {
                         nextBtn.removeAttribute('disabled')
-                        console.log('helo');
+                    }else{
+                        nextBtn.setAttribute('disabled', true)
                     }
                 })
 
