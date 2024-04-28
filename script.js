@@ -3,6 +3,8 @@ const selectedSeatList = document.getElementById('selected-seat-list');
 const totalpriceElement = document.getElementById('total-price');
 const grandtotalElement = document.getElementById('grand-total');
 
+
+
 document.querySelectorAll('.seat-table tbody tr td button').forEach(function (button) {
     button.addEventListener('click', function (event) {
         // Get the text of the parent <td> element (seat number)
@@ -49,7 +51,32 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
                  totalpriceValue += 550;
                  grandtotalvalue += 550;
                  totalpriceElement.innerText = totalpriceValue;
-                 grandtotalElement.innerText = grandtotalvalue
+                 grandtotalElement.innerText = grandtotalvalue;
+
+                 //coupon applying
+                 document.getElementById('coupon-input-field').addEventListener('keyup', function(e){
+                    const inputedText = e.target.value;
+                    const couponBtn = document.getElementById('coupon-btn');
+                    if (inputedText.toLowerCase() === "new15" || inputedText.toLowerCase() === 'couple20') {
+                        couponBtn.removeAttribute('disabled');
+                    }else{
+                        couponBtn.setAttribute('disabled', true)
+                    }
+                    couponBtn.addEventListener('click', function(){
+
+                        if (inputedText.toLowerCase() === "new15") {
+                            grandtotalvalue = (grandtotalvalue - (grandtotalvalue*0.15));
+                            grandtotalElement.innerText = grandtotalvalue;
+                        } else if(inputedText.toLowerCase() === 'couple20'){
+                            grandtotalvalue = (grandtotalvalue - (grandtotalvalue*0.2));
+                            grandtotalElement.innerText = grandtotalvalue;
+                        }
+                    })
+
+                 })
+                 
+
+
 
 
             } else {
