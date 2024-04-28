@@ -29,8 +29,8 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
             event.target.style.color = '';
             // Increase the total seat count by 1
             increaseTotalSeatCount();
-            
-            
+
+
         } else {
             // Check if the maximum number of seats has been reached
             if (document.querySelectorAll('.seat-table tbody tr td button.selected').length < 4) {
@@ -57,18 +57,29 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
                 totalpriceElement.innerText = totalpriceValue;
                 grandtotalElement.innerText = grandtotalvalue;
 
-                phoneNumber.addEventListener('keyup',function(e){
+
+
+                //removing disable next btn
+                phoneNumber.addEventListener('keyup', function (e) {
                     const inputNumber = e.target.value;
                     const inputNumberString = inputNumber.toString();
                     const nextBtn = document.getElementById('next-btn')
                     console.log(inputNumberString);
                     if (event.target.classList.contains('selected') && inputNumberString.length === 11) {
                         nextBtn.removeAttribute('disabled')
-                    }else{
+                    } else {
                         nextBtn.setAttribute('disabled', true)
                     }
                 })
 
+
+                //hiding main content and showing modal
+                document.getElementById('next-btn').addEventListener('click', function () {
+                    const modal = document.getElementById('modal');
+                    modal.classList.remove('hidden');
+                    const main = document.getElementById('main');
+                    main.classList.add('hidden')
+                })
 
 
             } else {
@@ -138,6 +149,8 @@ document.getElementById('coupon-input-field').addEventListener('keyup', function
 
 
 })
+
+
 
 function decreaseTotalSeatCount() {
     let totalSeatLeftElement = document.getElementById('total-seat-left');
