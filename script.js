@@ -1,5 +1,7 @@
 const selectedSeatCountElement = document.getElementById('selected-seat-count');
 const selectedSeatList = document.getElementById('selected-seat-list');
+const totalpriceElement = document.getElementById('total-price');
+const grandtotalElement = document.getElementById('grand-total');
 
 document.querySelectorAll('.seat-table tbody tr td button').forEach(function (button) {
     button.addEventListener('click', function (event) {
@@ -35,9 +37,20 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
                 decreaseTotalSeatCount();
                 let selectedSeatCount = parseInt(selectedSeatCountElement.innerText);
                 selectedSeatCount += 1;
+
+                //inset selected seats to table
                 selectedSeatCountElement.innerText = selectedSeatCount;
                 const firstROw = selectedSeatList.firstChild;
-                selectedSeatList.insertBefore(newSeattr, firstROw)
+                selectedSeatList.insertBefore(newSeattr, firstROw);
+                
+                //inset total price and grand total
+                 let totalpriceValue = parseInt(totalpriceElement.innerText);
+                 let grandtotalvalue = parseInt(grandtotalElement.innerText);
+                 totalpriceValue += 550;
+                 grandtotalvalue += 550;
+                 totalpriceElement.innerText = totalpriceValue;
+                 grandtotalElement.innerText = grandtotalvalue
+
 
             } else {
                 // If the maximum number of seats has been reached, alert the user
