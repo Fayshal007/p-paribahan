@@ -2,6 +2,7 @@ const selectedSeatCountElement = document.getElementById('selected-seat-count');
 const selectedSeatList = document.getElementById('selected-seat-list');
 const totalpriceElement = document.getElementById('total-price');
 const grandtotalElement = document.getElementById('grand-total');
+const couponRowElement = document.getElementById('coupon-row')
 
 
 
@@ -67,9 +68,11 @@ document.querySelectorAll('.seat-table tbody tr td button').forEach(function (bu
                         if (inputedText.toLowerCase() === "new15") {
                             grandtotalvalue = (grandtotalvalue - (grandtotalvalue*0.15));
                             grandtotalElement.innerText = grandtotalvalue;
+                            couponRowElement.classList.add('hidden');
                         } else if(inputedText.toLowerCase() === 'couple20'){
                             grandtotalvalue = (grandtotalvalue - (grandtotalvalue*0.2));
                             grandtotalElement.innerText = grandtotalvalue;
+                            couponRowElement.classList.add('hidden');
                         }
                     })
 
